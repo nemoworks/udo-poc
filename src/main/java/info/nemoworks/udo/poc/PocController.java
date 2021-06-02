@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PocController {
     @GetMapping(value = "/")
     public String hello() {
-        return "world";
+        return "{name: testName}";
     }
 
 }
