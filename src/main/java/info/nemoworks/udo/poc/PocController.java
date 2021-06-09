@@ -9,9 +9,9 @@ import java.util.Map;
 @RestController
 public class PocController {
 
-
-
     private AirPurifier airPurifier;
+
+    private Map<String,Object> map = new HashMap<>(){{put("name","world");}};
 
     @GetMapping(value = "/air")
     public String getAir() {
@@ -45,15 +45,13 @@ public class PocController {
 
     @GetMapping(value = "/")
     public Map<String,Object> hello() {
-        Map<String,Object> map = new HashMap<>();
-        map.put("name","world");
+       // map.put("name","world1");
         return map;
     }
 
     @PostMapping(value = "/")
     public Map<String,Object> postHello(@RequestBody String params){
         System.out.println(params);
-        Map<String,Object> map = new HashMap<>();
         map.put("name","tc");
         return map;
     }
