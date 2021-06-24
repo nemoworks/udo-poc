@@ -1,25 +1,32 @@
 package info.nemoworks.udo.poc;
 
 import com.google.gson.Gson;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PocController {
 
     private AirPurifier airPurifier;
 
-    private Map<String,Object> map = new HashMap<>(){{put("name","world");}};
+    private Map<String, Object> map = new HashMap<>() {{
+        put("name", "world");
+    }};
 
     public PocController() {
         this.airPurifier = new AirPurifier("fan.mypurifier2",
-                "off",
-                "idle",
-                22,
-                38,
-                53);
+            "off",
+            "idle",
+            22,
+            38,
+            53);
     }
 
     @GetMapping(value = "/air")
@@ -29,11 +36,12 @@ public class PocController {
         return new Gson().toJson(this.airPurifier);
     }
 
+
     @PostMapping(value = "/air")
     public String updateAirPurifier(@RequestBody String str) {
         System.out.println(str);
         AirQuality airQuality = new Gson().fromJson(str, AirQuality.class);
-        if(airQuality.getAqi() > 30){
+        if (airQuality.getAqi() > 30) {
             airPurifier.setState("on");
         }
         return new Gson().toJson(airPurifier);
@@ -52,15 +60,15 @@ public class PocController {
     }
 
     @GetMapping(value = "/")
-    public Map<String,Object> hello() {
-       // map.put("name","world1");
+    public Map<String, Object> hello() {
+        // map.put("name","world1");
         return map;
     }
 
     @PostMapping(value = "/")
-    public Map<String,Object> postHello(@RequestBody String params){
+    public Map<String, Object> postHello(@RequestBody String params) {
         System.out.println(params);
-        map.put("name","tc");
+        map.put("name", "tc");
         return map;
     }
 }
