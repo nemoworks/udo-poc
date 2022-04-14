@@ -35,6 +35,11 @@ public class PocController {
         return new Gson().toJson(this.airPurifier);
     }
 
+    @GetMapping(value = "/api/states/fan.mypurifier")
+    public String getAirP() {
+        System.out.println(new Gson().toJson(this.airPurifier));
+        return new Gson().toJson(this.airPurifier);
+    }
 
     @PostMapping(value = "/air")
     public String updateAirPurifier(@RequestBody String str) {

@@ -14,7 +14,7 @@ public class MQTTPublisher {
         String clientid = UUID.randomUUID().toString();
         MqttClient client = null;
 //        MqttClient client1 = null;
-        client = new MqttClient("tcp://210.28.134.32:1883", clientid);
+        client = new MqttClient("tcp://210.28.132.168:30609", clientid);
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
         options.setCleanSession(true);
@@ -34,17 +34,17 @@ public class MQTTPublisher {
         map.put("name", "world");
         MqttMessage mqttMessage = new MqttMessage(map.toString().getBytes());
 //        client.publish("sub/app_demo/lhFIQ3oB4t4MYt1TPlcc", mqttMessage);
-        int i = 0;
-        while (i < 100) {
-            client.publish("topic/pub/mqttTest@email.com", mqttMessage);
-            System.out.println("Publishing: mqttTest@email.com");
-            Thread.sleep(1000);
-            i++;
-        }
+//        int i = 0;
+//        while (i < 100) {
+//            client.publish("topic/pub/mqttTest@email.com", mqttMessage);
+//            System.out.println("Publishing: mqttTest@email.com");
+//            Thread.sleep(1000);
+//            i++;
+//        }
 //        System.out.println("\tMessage '" + map + "' to 'udo'");
-//        String dumbStr = "ThisIsNotAJsonStr";
-//        MqttMessage dumbStrMessage = new MqttMessage(dumbStr.getBytes());
-//        client.publish("sub/app_demo/mBFSQ3oB4t4MYt1Tvlc5", dumbStrMessage);
+        String dumbStr = "ThisIsNotAJsonStr";
+        MqttMessage dumbStrMessage = new MqttMessage(dumbStr.getBytes());
+        client.publish("sub/app_demo/aZQl7XoBkC4qS4p24Hrj", dumbStrMessage);
 //        String illegalStrCreatedBy = "{CreatedBy: who}";
 //        String illegalStrCreatedOn = "{CreatedOn: 1202}";
 //        String correctStr = "{CreatedBy: nemoworks, CreatedOn: 2021}";
